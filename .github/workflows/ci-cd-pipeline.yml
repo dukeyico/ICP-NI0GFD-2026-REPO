@@ -18,11 +18,10 @@ jobs:
       with:
         java-version: '17'
         distribution: 'temurin'
-        cache: maven
+        # Removed 'cache: maven' so it doesn't look for a pom.xml file
 
     - name: Build and Run Tests
       run: echo "Simulating Maven Build -> mvn clean install" && echo "Tests passed successfully!"
-      # Real command would be: mvn clean install
 
   deploy:
     needs: build-and-test
@@ -31,7 +30,7 @@ jobs:
     steps:
     - name: Checkout Code
       uses: actions/checkout@v3
-
+    
     - name: Deploy Application
       run: |
         echo "Deploying application to cloud environment..."
